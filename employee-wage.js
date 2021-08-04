@@ -1,4 +1,4 @@
-//UC7
+//UC8
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
 const PART_TIME_HOURS = 4;
@@ -32,6 +32,7 @@ let totalEmpHrs =0;
 let totalWorkingdays =0;
 let empHrs = 0;
 let empDailyWageArr = new Array();
+let empDailyWageMap = new Map();
 
 //To check Maximum Working Hours and Number of Working Days Conditions
 while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingdays < NUM_OF_WORKING_DAYS) {
@@ -40,6 +41,7 @@ let empCheck = Math.floor(Math.random() * 10) % 3;
 empHrs = getWorkingHours(empCheck);
 totalEmpHrs += empHrs;
 empDailyWageArr.push(calcDailyWage(empHrs));
+empDailyWageMap.set(totalWorkingdays, calcDailyWage(empHrs));
 }
 
 let empWage = calcDailyWage(totalEmpHrs);
@@ -102,3 +104,8 @@ function totalDaysWorked(numofDays, dailyWage) {
    return numofDays;
 }
 console.log("Number of Days Employee Worked: "+empDailyWageArr.reduce(totalDaysWorked, 0));
+
+//UC-8 Store Daily Wage in a Map
+console.log("Map of Day with Daily wage")
+console.log(empDailyWageMap);
+console.log("Employee wage Map totalHrs: "+Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
